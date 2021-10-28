@@ -12,13 +12,6 @@ def lab1_2(a, b):
     return p, s
 
 
-def lab1_3(c):
-    '''Функция переводит значение температуры по шкале Цельсия в значения по шкале Фаренгейта и Кельвина'''
-    f = c * 1.8 + 32
-    k = c + 273.15
-    return f, k
-
-
 def degrees(num):
     '''Функция возвращает соответствующую форму слова градус для числа'''
     if num % 10 == 0 or 5 <= num % 100 <= 20 or 5 <= num % 10 <= 9:
@@ -29,6 +22,19 @@ def degrees(num):
         return "градус"
 
 
+class Degree():
+    def __init__(self, celsius):
+        self.celsius = celsius
+
+    def getCelsius(self):
+        return self.celsius
+
+    def getFahrenheit(self):
+        return self.celsius * 1.8 + 32
+
+    def getKelvin(self):
+        return self.celsius + 273.15
+
 a = float()
 xy = lab1_1(a)
 print(f"При а равном {a}, x = {xy[0]:.2f}, y = {xy[1]:.2f}")
@@ -37,8 +43,7 @@ b = float()
 ps = lab1_2(a, b)
 print(f"Для четырехугольника со сторонами {a} и {b}, периметр = {ps[0]:.2f}, площадь = {ps[1]:.2f}")
 
-c = float()
-fk = lab1_3(c)
-print(f"{c} {degrees(c)} по Цельсию это " \
-      f"{fk[0]} {degrees(fk[0])} по Фаренгейту или " \
-      f"{fk[1]} {degrees(fk[1])} по Кельвину")
+degree = Degree(36.6)
+print(f"{degree.getCelsius():.2f} {degrees(degree.getCelsius())} по Цельсию это " \
+      f"{degree.getFahrenheit():.2f} {degrees(degree.getFahrenheit())} по Фаренгейту или " \
+      f"{degree.getKelvin():.2f} {degrees(degree.getKelvin())} по Кельвину")
